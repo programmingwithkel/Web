@@ -7,6 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -14,8 +15,14 @@ html {
 
 body {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
    
+}
+
+section {
+    padding: 20px;
 }
 
 header {
@@ -92,10 +99,11 @@ header {
     justify-content: center;
     align-items: center;
     height: 110vh;
-    background: url(background.jpg) no-repeat bottom center;
+    background: url(/img/background.jpg) no-repeat bottom center;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 #text {
@@ -103,6 +111,18 @@ header {
     font-size: 5em;
     color: #1b283a;
     text-shadow: 1px 3px 4px #fff;
+    overflow: hidden;
+}
+
+
+#menu-icon {
+    font-size: 2rem;
+    z-index: 10001;
+    cursor: pointer;
+    margin-left: 25px;
+    color: #fff;
+    border-radius: 3px;
+    display: none;
 }
 
 .parallax img {
@@ -116,13 +136,14 @@ header {
 .parallax img#gate-left {
     position: fixed;
     transform: translateX(-282px);
+    max-width: 100%;
     
 }
 
 .parallax img#gate-right {
     position: fixed;
     transform: translateX(305px);
-
+    max-width: 100%;
 }
 
 
@@ -388,6 +409,7 @@ header {
 }
 
 .services h2 {
+    padding-top: 5%;
     text-align: center;
     margin-bottom: 5rem;
     color: #fff;
@@ -450,6 +472,7 @@ header {
 }
 
 .family h2 {
+    padding-top: 5%;
     text-align: center;
     margin-bottom: 5rem;
     color: #fff;
@@ -483,11 +506,6 @@ header {
     transform-style: preserve-3d;
     cursor: pointer;
 }
-
- /* .family-container .family-box:hover {
-    border-color: #6a1b9a;
-    transform: scale(1.03);
-}  */
 
 
 .family-box .front-content,
@@ -564,6 +582,7 @@ header {
 }
 
 .gallery h2 {
+    padding-top: 5%;
     text-align: center;
     margin-bottom: 5rem;
     color: #fff;
@@ -598,10 +617,6 @@ header {
     cursor: pointer;
 }
 
-/* .gallery-container .gallery-box:hover {
-    border-color: #6a1b9a;
-    transform: scale(1.1);
-} */
 
 
 .gallery-box .front-content,
@@ -671,6 +686,7 @@ header {
 
 
 .contact {
+    overflow: hidden;
     position: relative;
     height: 100vh;
     background: #020912;
@@ -678,6 +694,7 @@ header {
   }
   
 .contact h2 {
+    padding-top: 5%;
     margin-bottom: 3rem;
     text-align: center;
     color: #fff;
@@ -746,17 +763,23 @@ header {
 
 
 .footer {
+    position: relative;
     display: flex;
+    flex-shrink: 0;
     flex-direction: column; 
     align-items: center;
     justify-content: center;
-    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
     background: #020912;
+    height: auto;
     padding: 20px; 
 }
 
 .footer h1 {
     color: #fff;
+    min-height: 30px;
     font-size: 1.5rem;
     margin: 0; 
     text-align: center;
@@ -781,14 +804,15 @@ header {
 .footer a {
     width: 50px; 
     height: 50px;
+    font-size: 1.5rem;
     color: #fff;
     transition: transform 0.3s ease; 
 }
 
 .footer a img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: cover; 
 }
 
 .footer a:hover  {
@@ -797,26 +821,3 @@ header {
     box-shadow: none;
 }
 
-
-/* .sci {
-    margin-top: 20px;
-    
-}
-  
-.sci a {
-    display: inline;
-    margin: 0 10px;
-    color: #ffffff;
-    font-size: 1.5rem;
-    transition: color 0.6s ease;
-}
-  
-.sci a:hover {
-    color: #6a1b9a;
-    box-shadow: none; 
-}
-
-.about-info .btn-sci .sci {
-    margin-left: 20px;
-    
-} */

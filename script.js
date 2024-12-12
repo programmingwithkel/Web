@@ -8,10 +8,147 @@ let gateLeft = document.getElementById('gate-left');
 window.addEventListener('scroll', () => {
     let value = window.scrollY;
 
-    text.style.marginTop = value * 2.5 + 'px';
-    treeRight.style.left = value * 1.5 + 'px';
-    treeLeft.style.left = value * -1.5 + 'px';
-    gateRight.style.left = value * -0.5 + 'px';
-    gateLeft.style.left = value * 0.5 + 'px';
+    
+        text.style.marginTop = value * 2.5 + 'px';
+        treeRight.style.left = value * 1.5 + 'px';
+        treeLeft.style.left = value * -1.5 + 'px';
+        gateRight.style.left = value * -0.5 + 'px';
+        gateLeft.style.left = value * 0.5 + 'px';
+    
+    
+});
 
-})
+
+const navLinks = document.querySelectorAll('.navigation a');
+
+
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        
+        e.preventDefault();
+        
+       
+        navLinks.forEach(nav => nav.classList.remove('Active'));
+
+        
+        link.classList.add('Active');
+        
+        
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+
+const sections = document.querySelectorAll('section');
+const removeActiveClasses = () => {
+    navLinks.forEach(link => link.classList.remove('Active'));
+};
+
+const addActiveClass = (id) => {
+    const activeLink = document.querySelector(`.navigation a[href="#${id}"]`);
+    if (activeLink) {
+        activeLink.classList.add('Active');
+    }
+};
+
+
+const observerOptions = {
+    root: null, 
+    threshold: 0.6, 
+};
+
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            removeActiveClasses();
+            addActiveClass(entry.target.id);
+        }
+    });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+
+sections.forEach(section => observer.observe(section));
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutParagraph = document.querySelector(".about-info p");
+
+  
+    const paragraphText = aboutParagraph.textContent;
+    aboutParagraph.innerHTML = ""; 
+
+    paragraphText.split("").forEach((letter, index) => {
+        const span = document.createElement("span");
+        span.textContent = letter === " " ? "\u00A0" : letter; 
+        span.style.animationDelay = `${index * 0.05}s`; 
+        aboutParagraph.appendChild(span);
+    });
+
+   
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const spans = aboutParagraph.querySelectorAll("span");
+                spans.forEach((span) => span.classList.add("active"));
+            }
+        });
+    }, {
+        threshold: 0.5 
+    });
+
+    observer.observe(aboutParagraph); 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutHeading = document.querySelector(".about-info h1");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                aboutHeading.classList.add("active"); 
+            }
+        });
+    }, {
+        threshold: 0.1 
+    });
+
+    observer.observe(aboutHeading);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const initializeFlipEffect = (selector) => {
+        const boxes = document.querySelectorAll(selector);
+
+        boxes.forEach(box => {
+            const flipCard = () => {
+                boxes.forEach(b => b.classList.remove('flipped'));
+                box.classList.add('flipped');
+            };
+
+            const unflipCard = () => {
+                box.classList.remove('flipped');
+            };
+
+            
+            box.addEventListener('click', flipCard);
+            box.addEventListener('blur', unflipCard);
+            box.addEventListener('mouseenter', flipCard);
+            
+            
+
+            box.setAttribute('tabindex', '0');
+        });
+    };
+
+    
+    initializeFlipEffect('.family-box');
+    initializeFlipEffect('.gallery-box');
+});
+
+

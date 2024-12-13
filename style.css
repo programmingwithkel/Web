@@ -125,6 +125,10 @@ header {
     display: none;
 }
 
+#mobile-navigation {
+    display: none; 
+}
+
 .parallax img {
     position: absolute;
     top: 0;
@@ -919,7 +923,7 @@ header {
     
     .parallax {
         height: 80vh;
-        background-size: cover;
+        background-size: 768px 768px;
         
     }
 

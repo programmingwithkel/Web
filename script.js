@@ -151,4 +151,53 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeFlipEffect('.gallery-box');
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileMenu = document.createElement('div');
 
+   
+    mobileMenu.id = 'mobile-navigation';
+    mobileMenu.innerHTML = `
+        <div class="mobile-menu-overlay">
+            <nav class="mobile-menu-content">
+                <button class="close-menu">&times;</button>
+                <ul>
+                    <li><a href="#home" data-section="home">Home</a></li>
+                    <li><a href="#about" data-section="about">About</a></li>
+                    <li><a href="#services" data-section="services">Services</a></li>
+                    <li><a href="#family" data-section="family">Family</a></li>
+                    <li><a href="#gallery" data-section="gallery">Gallery</a></li>
+                    <li><a href="#contact" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    `;
+
+  
+    document.body.appendChild(mobileMenu);
+
+    
+    menuIcon.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+    });
+
+    
+    function closeMenu() {
+        mobileMenu.classList.remove('active'); 
+    }
+
+   
+    mobileMenu.querySelector('.close-menu').addEventListener('click', closeMenu);
+
+    
+    mobileMenu.querySelector('.mobile-menu-overlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            closeMenu();
+        }
+    });
+
+    
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+});
